@@ -4,13 +4,13 @@ import MoodDisplay from '@/components/MoodDisplay';
 import PollProgressBar from '@/components/PollProgressBar';
 import PollResultsCard from '@/components/PollResultsCard';
 import Button from '@/components/shared/buttons/Button';
-import { Poll, User, Vote, Mood } from '@prisma/client';
 import Image from 'next/legacy/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import ProgressBar from './shared/ProgressBar';
 import CheckboxButton from './CheckboxButton';
+import { Mood, Poll, User, Vote } from '@prisma/client';
 
 interface PollResultsProps extends Poll {
   participants: User[];
@@ -20,6 +20,9 @@ interface PollResultsProps extends Poll {
 export default function PollResults({ poll }: { poll: PollResultsProps }) {
   const router = useRouter();
   const [cardIndex, setCardIndex] = useState(0);
+
+  // get users
+  const users = poll.participants.map(participant => participant.name);
 
   //next&back button functionality
   function incrementValue() {
@@ -105,8 +108,9 @@ export default function PollResults({ poll }: { poll: PollResultsProps }) {
     for (let i = 0; i < poll.votes.length; i++) {
       let arrEntry = [];
       for (let j = 0; j < poll.votes.length; j++) {
-        if (poll.votes[j]?.answer[i] === true) {
-          arrEntry.push(poll.votes[j]?.User.name);
+        // if the user voted for this option, add their name to the array
+        if (poll.votes[i]?.answer[j] === true) {
+          arrEntry.push(users[i]);
         }
       }
       usersWhoVotedForOptionArray.push(arrEntry);
