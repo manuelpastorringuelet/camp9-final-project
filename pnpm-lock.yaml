@@ -62,9 +62,6 @@ dependencies:
   clsx:
     specifier: ^1.2.1
     version: 1.2.1
-  eslint:
-    specifier: 8.41.0
-    version: 8.41.0
   eslint-config-next:
     specifier: 13.4.4
     version: 13.4.4(eslint@8.41.0)(typescript@5.0.4)
@@ -160,6 +157,9 @@ devDependencies:
   '@types/react-query':
     specifier: ^1.2.9
     version: 1.2.9(react-dom@18.2.0)(react@18.2.0)
+  eslint:
+    specifier: 8.41.0
+    version: 8.41.0
   eslint-plugin-storybook:
     specifier: ^0.6.12
     version: 0.6.12(eslint@8.41.0)(typescript@5.0.4)
