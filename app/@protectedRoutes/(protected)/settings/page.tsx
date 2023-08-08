@@ -78,12 +78,13 @@ function Settings() {
           <SettingsButton
             disabled={false}
             variant={usernameEdit}
-            children=""
             type="submit"
             onClick={() => {
               setUsernameEdit('check');
             }}
-          />
+          >
+            &apos;&apos;
+          </SettingsButton>
         </div>
       </form>
       <form onSubmit={handleSubmitP(onPasswordSubmit)}>
@@ -101,12 +102,13 @@ function Settings() {
             <SettingsButton
               disabled={false}
               variant={passwordEdit}
-              children=""
               type="submit"
               onClick={() => {
                 setPasswordEdit('check');
               }}
-            />
+            >
+              &apos;&apos;
+            </SettingsButton>
           </div>
         </div>
         <div className="flex gap-4">

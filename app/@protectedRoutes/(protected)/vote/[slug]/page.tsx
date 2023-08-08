@@ -6,7 +6,6 @@ import {
 } from '@/components/hooks/usePoll';
 import ProgressBar from '@/components/shared/ProgressBar';
 import Button from '@/components/shared/buttons/Button';
-import { Mood } from '@prisma/client';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -20,6 +19,7 @@ import QuestionVote from '@/components/voting/QuestionVote';
 import VotingConditions from '@/components/voting/VotingConditions';
 import { useSession } from 'next-auth/react';
 import Loading from '@/components/voting/Loading';
+import { Mood } from '@prisma/client';
 
 type Anonymity = 'Anonymous' | 'NonAnonymous' | 'AnonymousUntilQuorum';
 
@@ -37,19 +37,22 @@ export default function Voting({ params }: { params: { slug: string } }) {
 
   const multistepComponets = [
     <QuestionVote
+      key={query.data?.data.id}
       description={query.data?.data.description}
       question={query.data?.data.question}
     />,
     <VotingConditions
+      key={query.data?.data.id}
       anonymity={query.data?.data.anonymity}
       quorum={query.data?.data.quorum}
     />,
     <VotingTypeChoice
+      key={query.data?.data.id}
       question={query.data?.data.question!}
       type={query.data?.data.type!}
       options={query.data?.data.options}
     />,
-    <VotingFeedback />,
+    <VotingFeedback key={query.data?.data.id} />,
   ];
 
   const [step, setStep] = useState<number>(0);
