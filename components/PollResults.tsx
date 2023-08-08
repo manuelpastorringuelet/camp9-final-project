@@ -103,13 +103,13 @@ export default function PollResults({ poll }: { poll: PollResultsProps }) {
   const usersWhoVotedForOptionArray = (function () {
     const usersWhoVotedForOptionArray = [];
     for (let i = 0; i < poll.votes.length; i++) {
-      let arrEntry = []
+      let arrEntry = [];
       for (let j = 0; j < poll.votes.length; j++) {
         if (poll.votes[j]?.answer[i] === true) {
           arrEntry.push(poll.votes[j]?.User.name);
         }
       }
-      usersWhoVotedForOptionArray.push(arrEntry)
+      usersWhoVotedForOptionArray.push(arrEntry);
     }
     return usersWhoVotedForOptionArray;
   })();
@@ -121,6 +121,7 @@ export default function PollResults({ poll }: { poll: PollResultsProps }) {
   const cards = [
     //0.svg+text
     <PollResultsCard
+      key={poll.id}
       pollQuestion={questionFitter(poll.question, 60).questionStart}
       endDate={new Date()}
       startDate={new Date()}
@@ -145,6 +146,7 @@ export default function PollResults({ poll }: { poll: PollResultsProps }) {
 
     //1.question=description
     <PollResultsCard
+      key={poll.id}
       pollQuestion={questionFitter(poll.question, 32).questionStart}
       endDate={new Date()}
       startDate={new Date()}
@@ -184,6 +186,7 @@ export default function PollResults({ poll }: { poll: PollResultsProps }) {
 
     //2.voting conditions
     <PollResultsCard
+      key={poll.id}
       pollQuestion={questionFitter(poll.question, 32).questionStart}
       endDate={new Date()}
       startDate={new Date()}
@@ -230,6 +233,7 @@ export default function PollResults({ poll }: { poll: PollResultsProps }) {
     //3.answers+percantages
     //sort options by percentages or by appearence in the poll?
     <PollResultsCard
+      key={poll.id}
       pollQuestion={questionFitter(poll.question, 32).questionStart}
       endDate={new Date()}
       startDate={new Date()}
@@ -266,7 +270,7 @@ export default function PollResults({ poll }: { poll: PollResultsProps }) {
                       height={16}
                       alt="show participants who voted for this option"
                     ></Image>
-                    {usersWhoVotedForOptionArray[index]?.join(" ")}
+                    {usersWhoVotedForOptionArray[index]?.join(' ')}
                   </>
                 ) : (
                   ''
@@ -280,6 +284,7 @@ export default function PollResults({ poll }: { poll: PollResultsProps }) {
 
     //4.mood
     <PollResultsCard
+      key={poll.id}
       pollQuestion={questionFitter(poll.question, 32).questionStart}
       endDate={new Date()}
       startDate={new Date()}
