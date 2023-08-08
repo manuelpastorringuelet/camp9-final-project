@@ -36,4 +36,6 @@ const ref = (
   );
 };
 
-export const Checkboxinput = forwardRef(ref);
+const Checkboxinput = forwardRef(ref);
+
+export default Checkboxinput;
